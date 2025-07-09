@@ -1,20 +1,23 @@
 
-const pokeApi = {}
+const pokeApi = {} // Objeto vazio.
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
-    const pokemon = new Pokemon()
-    pokemon.number = pokeDetail.id
-    pokemon.name = pokeDetail.name
+    const pokemon = new Pokemon();
+    // Numero e nome de cada pokemon:
+    pokemon.number = pokeDetail.id;
+    pokemon.name = pokeDetail.name;
 
-    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
-    const [type] = types
+    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
+    const [type] = types;
 
-    pokemon.types = types
-    pokemon.type = type
+    // recebe o tipo de cada pokemon:
+    pokemon.types = types;
+    pokemon.type = type;
 
-    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
+    // Recebe a foto de cada pokemon:
+    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default;
 
-    return pokemon
+    return pokemon;
 }
 
 pokeApi.getPokemonDetail = (pokemon) => {
@@ -24,7 +27,7 @@ pokeApi.getPokemonDetail = (pokemon) => {
 }
 
 pokeApi.getPokemons = (offset = 0, limit = 5) => {
-    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
     return fetch(url)
         .then((response) => response.json())
